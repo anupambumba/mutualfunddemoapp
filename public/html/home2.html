@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28//angular-route.min.js"></script>
+<script src="/public/javascripts/controller.js"></script>
+
+</head>
+<body style="background-color: #9966ff;">
+	<div ng-app="mutualFundModuleApp">
+		<div ng-controller="homePageController">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9"
+						style="height: 35px; text-align: center; color: white; font-weight: bold;">
+						<button type="button" class="btn btn-warning">Helpline
+							Nos. 9163393666 / 9163393668</button>
+					</div>
+					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"
+						style="height: 25px; background-color: #9966ff; text-align: right; color: white; font-weight: bold;">You
+						are&nbsp;{{userName}}</div>
+				</div>
+
+
+				<div class="row" class="h-100 d-inline-block"
+					style="max-height: 100% important!;">
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"
+						style="background-color: grey; color: white; font-weight: bold;">
+						<div >
+							Here is what you have already purchased
+							<div class="container" id="rowDataParent" >
+								<div class="row" ng-repeat="rowData in mutualFundData">
+									<div class="col-12"	>
+										<div class="container" >
+											<div class="row">
+												<div class="col-12" >
+												
+												<button style="border:solid;border-color: black;margin: 3px;" class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapse_{{rowData.fundName}}_{{$index+1}}" aria-expanded="true" aria-controls="collapse_{{rowData.fundName}}_{{$index+1}}" >
+												    	{{rowData.fundName}}&nbsp;&nbsp; ({{rowData.purchaseDate}})
+												  </button>
+												  <div class="collapse" id="collapse_{{rowData.fundName}}_{{$index+1}}">
+													  <div class="card card-body col-xs-3 col-sm-3 col-md-3 col-lg-3" style="border:solid;border-color: white;border-width: 3px;margin: 3px;">
+													    <div class="container" >
+													      <div class="row">
+													       <div class="col-12" >Fund Name : {{rowData.fundName}}</div>
+													      
+													      </div>
+													     <div class="row">
+													        <div class="col-12" >Purchase Date : {{rowData.purchaseDate}}</div>
+													      
+													      </div>
+													      <div class="row">
+													        <div class="col-12" >Purchase Unit : {{rowData.purchaseUnit}}</div>
+													      
+													      </div>
+													      <div class="row">
+													       <div class="col-12" >Amount Invested : {{rowData.amountInvested}}</div>
+													      
+													     </div>
+													      <div class="row">
+													        <div class="col-12" >Current Rate : {{rowData.currentRate}}</div>
+													      
+													     </div>
+													      <div class="row">
+													        <div class="col-12" >Current Value : {{rowData.currentValue}}</div>
+													      
+													      </div>
+													    
+													    </div>
+													  </div>
+													</div>
+												  
+												  
+												</div>
+
+											</div>
+											
+
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-7"
+						style="background-color: blue; color: white; font-weight: bold;">
+						<div style="text-align: center;">Here is what you can still purchase</div>
+                        <form method="post" id="purchaseForm" name="purchaseForm">
+                        <div style="text-align: center;">Here is the amount you can spend
+								 <input type="text" name="availableValue" id="availableValue" value="5000"  placeholder="5000" ng-model="home.availableValue">
+								
+						</div>
+						<div style="text-align: center;">  
+						       Enter the Fund Name to filter the data<input type="text" ng-model="fundFilter" name="fundFilter" id="fundFilter">
+						       
+						</div>
+                         <div style="font: bold;color: red;">{{errorMessage}}</div>
+                         <div class="container" id="currentData" style="width:80%;text-align: center;height: 225px; overflow: auto;">
+                         <div class="row">
+                         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="border: 1px solid;">
+								    Select
+							   </div>
+						       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"  style="border: 1px solid;"> 
+						        Fund Name
+						       </div>
+						       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="border: 1px solid;">
+						         Fund Value
+						       </div>
+						       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="border: 1px solid;">
+								    Quantity
+								  </div>
+						      
+                         
+                         
+                         </div>
+                         <div class="row" ng-repeat="availableFund in currentMutualFundData | filter:fundFilter">
+                          <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="border: 1px solid;">
+								      <input type="checkbox" id="currentFund_{{$index}}" name="currentFund_{{$index}}" ng-model="currentFundCheck">
+								  </div>
+								  
+								   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="border: 1px solid;">
+								    {{availableFund.availableFundName}}
+								  </div>
+								  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="border: 1px solid;">
+								  {{availableFund.availableFundValue}}
+								  </div>
+								  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="border: 1px solid;">
+								    <input ng-model="home.currentFundQty" value="0" size="3" placeholder="0" type="text" id="currentFundQty_{{$index}}" name="currentFundQty_{{$index}}" ng-disabled="!currentFundCheck" ng-blur="checkoutDetails(availableFund,$index)">
+								  </div>
+								
+								
+                         
+                         </div>
+                         
+                         </div>
+                         
+                         
+                        
+                        
+                        </form>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+var $rowDataParent = $('#rowDataParent');
+$rowDataParent.on('show.bs.collapse','.collapse', function() {
+    $rowDataParent.find('.collapse.in').collapse('hide');
+});
+
+</script>
+</html>

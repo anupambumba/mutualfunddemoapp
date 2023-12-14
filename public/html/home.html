@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title>Trading Portal | Dashboard</title>
+    <!--<title> Responsiive Admin Dashboard | CodingLab </title>-->
+    <link rel="stylesheet" href="/public/css/style.css">
+    <!-- Boxicons CDN Link -->
+    <link href='/public/css/boxicons.css' rel='stylesheet'>
+    <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28//angular-route.min.js"></script>
+<script src="/public/javascripts/controller.js"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+
+<div ng-app="mutualFundModuleApp">
+<div ng-controller="homePageController">
+  <div class="sidebar" style="overflow: auto;">
+    <div class="logo-details">
+      
+      <span class="logo_name">&nbsp;&nbsp;&nbsp;Existing Plans</span>
+    </div>
+      <ul>
+        <li  >
+         
+            
+          <div style="text-align: center;"> <button type="button" class="btn btn-success" style="border:solid;border-color: black;margin: 3px;">Your Dashboard</button></div>
+          
+        </li>
+        <div id="rowDataParent">
+        <div id="existingPlans" name="existingPlans" ng-repeat="rowData in mutualFundData">
+        <li>
+        <button style="border:solid;border-color: black;margin: 3px;" class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapse_{{rowData.fundDivName}}_{{$index+1}}" aria-expanded="true" aria-controls="collapse_{{rowData.fundDivName}}_{{$index+1}}" >
+												    	{{rowData.fundName}}&nbsp;&nbsp; ({{rowData.purchaseDate}})
+		</button>
+		<div class="collapse" id="collapse_{{rowData.fundDivName}}_{{$index+1}}" style="font-weight: bold;color: white;">
+		<div class="card card-body " style="border:solid;border-color: white;border-width: 3px;margin: 3px;">
+													    <div class="container" >
+													      <div class="row">
+													       <div class="col-12" >Fund Name : {{rowData.fundName}}</div>
+													      
+													      </div>
+													     <div class="row">
+													        <div class="col-12" >Purchase Date : {{rowData.purchaseDate}}</div>
+													      
+													      </div>
+													      <div class="row">
+													        <div class="col-12" >Purchase Unit : {{rowData.purchaseUnit}}</div>
+													      
+													      </div>
+													      <div class="row">
+													       <div class="col-12" >Amount Invested : {{rowData.amountInvested}}</div>
+													      
+													     </div>
+													      <div class="row">
+													        <div class="col-12" >Current Rate : {{rowData.currentRate}}</div>
+													      
+													     </div>
+													      <div class="row">
+													        <div class="col-12" >Current Value : {{rowData.currentValue}}</div>
+													      
+													      </div>
+													       <div class="row" >
+													        <div class="col-12" >
+													        <button type="button" ng-click="sellProduct(rowData.currentLoopValue)" id="button_sell_{{rowData.fundDivName}}_{{$index+1}}" name="button_sell_{{rowData.fundName}}_{{$index+1}}" class="btn btn-success">Sell</button>
+													        
+													        </div>
+													      
+													      </div>
+													    
+													    </div>
+													  </div>
+		
+		</div>
+        
+        
+        </li>
+        
+        </div>
+        </div>
+      </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+      <button type="button" class="btn btn-warning">Helpline Nos. 9163393666 / 9163393668</button>
+      </div>
+      <div class="sidebar-search">
+     Here is the amount you can spend <input class="form-control" type="text" name="availableValue" id="availableValue" value="5000"  placeholder="5000" ng-model="homePage.availableValue">
+      </div>
+      <div class="profile-details">
+        <!--<img src="images/profile.jpg" alt="">-->
+        <span class="admin_name">You are {{userName}}</span>
+        <span id="logoutSection" > <img src="/public/images/logut.png" alt="Logout" height="35" width="35"  ng-click="logoutUser()"></img></span>
+       
+      </div>
+    </nav>
+
+    <div class="home-content">
+      <br>  <div style="font: bold;color: red;">{{errorMessage}}</div>
+     <br> <div style="font: bold;color: green;" id="infoMSgSection">{{infoMessage}}</div><br>
+
+      <div class="sales-boxes">
+        <div class="recent-sales box">
+          <div class="title">Available Trade Window</div>
+          <div >  
+			 <input class="form-control" size="10" type="text" ng-model="fundFilter" name="fundFilter" id="fundFilter" placeholder="Enter the Fund Name to filter the data">
+				
+				<br><div class="container" id="currentData" style="width:98%;height: 300px; overflow: auto;">
+				<div class="row" style="font-weight: bold;">
+                         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+								    Select
+							   </div>
+						       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"  > 
+						        Fund Name
+						       </div>
+						       <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+						         Fund Value
+						       </div>
+						       <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+								    Quantity
+								  </div>
+						      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+								    Cart +
+							  </div>
+                         
+                         
+                         </div>
+				<div class="row" ng-repeat="availableFund in currentMutualFundData | filter:fundFilter" style="height: 40;margin-bottom: 10px;">
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-lg-left" >
+								      <input  type="checkbox" id="currentFund_{{$index}}" ng-model="currentFundCheck" name="currentFund_{{$index}}"  ng-change="initiatteCheckoutChange({{$index}})"  >
+								  </div>
+								  
+								   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+								    {{availableFund.availableFundName}}
+								  </div>
+								  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" >
+								  {{availableFund.availableFundValue}}
+								  </div>
+								  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"  >
+								    <input value="0" size="3" disabled="disabled" placeholder="0" type="text" id="currentFundQty_{{$index}}" name="currentFundQty_{{$index}}" >
+								  
+								  </div>
+								   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"  >
+								   
+								   <span id="addToCartImage_{{$index}}" style="display: none;"> <img src="/public/images/addToCart.png" alt="Add" height="35" width="35"  ng-click="checkoutDetails(availableFund,$index)"></img></span>
+								  </div>
+				
+				</div>
+				 </div>	       
+			</div>
+          
+          
+        </div>
+        <div class="top-sales box" style="overflow:hidden;">
+          <div class="title">Your Current Cart</div>
+          <ul id="detailsOfCartItems" class="list-group">
+         
+          
+          </ul>
+          <button type="button" class="btn btn-primary" disabled="disabled" id="purchaseCartItems" name="purchaseCartItems" ng-click="purchaseCartItems()">Purchase</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+var $rowDataParent = $('#rowDataParent');
+$rowDataParent.on('show.bs.collapse','.collapse', function() {
+    $rowDataParent.find('.collapse.in').collapse('hide');
+});
+
+</script>
+</div>
+</div>
+
+</body>
+</html>
+

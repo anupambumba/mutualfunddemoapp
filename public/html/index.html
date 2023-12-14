@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trading Portal | Log in</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/public/css/all.min.css">
+ 
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="/public/css/icheck-bootstrap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/public/css/adminlte.min.css">
+   <script src="/public/javascripts/jquery.min.js"></script>
+  <script src="/public/javascripts/bootstrap.min.js"></script>
+<script src="/public/javascripts/angular.min.js"></script>
+<script src="/public/javascripts/angular-route.min.js"></script>
+  <script src="/public/javascripts/controller.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body class="hold-transition login-page" >
+<div style="width: 100%;text-align: center;align-items: center;"><button type="button" class="btn btn-warning">Helpline Nos. 9163393666 / 9163393668</button></div>
+<div class="login-box">
+  <div class="login-logo">
+    <a href="#"><b>Trading Portal</b></a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card" ng-app="mutualFundModuleApp">
+    <div class="card-body login-card-body" ng-controller="mutualFundController">
+      <p class="login-box-msg">Sign in to view your dashboard</p>
+
+      <form ng-submit="submitMutualFundForm()" name="loginForm" id="loginForm" method="post">
+      	<div style="font: bold;color: red;">{{errorMessage}}</div>
+		<div style="font: bold;color: green;">{{infoMessage}}</div>
+        <div class="input-group mb-3">
+           <input type="text" id="userName" name="userName" ng-model="user.userName" class="form-control" placeholder="User Name">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-user"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" id="password" name="password" ng-model="user.password" class="form-control" placeholder="Password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      
+
+      <p class="mb-1">
+        <a href="/forgetPassword">I forgot my password</a>
+      </p>
+      <p class="mb-0">
+       <a href="/register" class="text-center">Register a new membership</a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+
+</body>
+</html>
