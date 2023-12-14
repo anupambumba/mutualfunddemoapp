@@ -3,9 +3,7 @@
   "version": "16.0.0",
   "description": "This is a Project for Online Trading of Shares. This is used for Buying and Selling of Shares",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  
   "author": "Anupam Sarkar",
   "license": "ISC",
   "dependencies": {
