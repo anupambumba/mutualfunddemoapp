@@ -59,4 +59,4 @@ jobs:
           app-name: 'mutualfunddemo'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6734A709EDFC480E9561DDAFFED07B0F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DB62797D3EA54E75B640AFBCA9DB7A88 }}
